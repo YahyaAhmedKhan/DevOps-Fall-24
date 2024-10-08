@@ -132,7 +132,7 @@ sudo docker rmi image_id # previous command will show image IDs
 ```
 
 ---
-## 4. Create a New Git Repository and Push Code
+## 3. Create a New Git Repository and Push Code
 
 ### Steps:
 
@@ -183,14 +183,14 @@ git push -u origin main --force
 
 ---
 
-## 5. Create a New Docker Hub Repository
+## 4. Create a New Docker Hub Repository
 
 ### Steps:
 
 - Log in to Docker Hub and create a new repository named `yourname-nodeapp` 
 
 ---
-## 6. Create a Freestyle Project for Nodeapp in Jenkins
+## 5. Create a Freestyle Project for Nodeapp in Jenkins
 
 ### Steps:
 
@@ -240,7 +240,7 @@ docker run -d -p 5000:5000 --name nodeapp-yourname -v nodeapp:/app your_dockerhu
 6. Click on the build under Build History and go Console Output to see if it was successful
 
 Check if the node app is live on `your-vm-ip:5006`
-## **7. Create a Subdomain for your App**
+## **6. Create a Subdomain for your App**
 
 ### Steps:
 - Create a subdomain `newuser-nodeapp.yourdomain.com` by adding a record. 
@@ -255,7 +255,7 @@ Check if your subdomain is live on DNS servers by visiting [whatsmydns.com](http
 
 ---
 
-## **8. Create Nginx Configuration for Jenkins and Nodeapp**
+## **7. Create Nginx Configuration for Jenkins and Nodeapp**
 
 ### Steps:
 - Set up reverse proxy configuration for Jenkins and your nodeapp in Nginx.
