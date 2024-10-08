@@ -1,0 +1,52 @@
+sudo apt install nginx mysql-server php-fpm php-mysql
+
+sudo apt install php-curl php-xml php-mbstring php-zip php-gd
+
+cd /tmp
+wget https://wordpress.org/latest.tar.gz
+tar -xvzf latest.tar.gz
+
+
+sudo cp -R /tmp/wordpress/* /var/www/html/
+
+sudo nano /etc/nginx/sites-available/wordpress
+
+server {
+    listen 80;
+    server_name your_domain_or_IP;
+
+    root /var/www/html;
+    index index.php index.html index.htm;
+
+    location / {
+        try_files $uri $uri/ /index.php?$args;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php7.4-fpm.sock; # Adjust PHP version as needed
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2)$ {
+        expires 30d;
+        add_header Cache-Control "public, no-transform";
+    }
+}
+
+sudo ln -s /etc/nginx/sites-available/wordpress /etc/nginx/sites-enabled/
+
+sudo systemctl reload nginx
+
+sudo add-apt-repository ppa:ondrej/php
+
+sudo apt update
+
+sudo apt install php8.1-fpm
+
+sudo systemctl start php8.1-fpm
+
+sudo nano /etc/nginx/sites-available/wordpress
+
+sudo systemctl reload nginx
