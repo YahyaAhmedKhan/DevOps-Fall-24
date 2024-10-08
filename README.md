@@ -22,7 +22,7 @@ sudo adduser newuser
 sudo usermod -aG sudo newuser
 
 # Switch to the new user
-sudo su - yahya
+sudo su - newuser
 
 # Create .ssh directory and set proper permissions
 mkdir -p ~/.ssh
@@ -208,7 +208,7 @@ cat /pathtopassword # The path will show on the Jenkins page you're on
 ```
 
 3. Go to Manage Jenkins > Plugins > Available Plugins and install the **CloudBees Docker Build and Publish** plugin
-4. Create a new Freestyle project by going to New Item, name it `yahya2-nodeapp`.
+4. Create a new Freestyle project by going to New Item, name it `newuser-nodeapp`.
 
 ### Jenkins Configuration
 
