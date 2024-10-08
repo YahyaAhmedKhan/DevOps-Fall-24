@@ -1,15 +1,15 @@
 # Guide for Mids practice
 
----
-### 1. Create a New User with SSH Key for Password-less Access
+## 1. Create a New User with SSH Key for Password-less Access
 
-#### Steps:
+### Steps:
+
 - Create a new user.
 - Add the SSH key to the new user for passwordless login.
 - Use the SSH key to SSH into the new user from your local machine.
-#### Commands:
+### Commands:
 
-**SSH into your VM into a user with sudo privileges e.g. root, sysadmin etc.**
+- **SSH into your VM into a user with sudo privileges e.g. root, sysadmin etc.**
 
 ```bash
 # Create a new user 
@@ -36,7 +36,6 @@ chmod 600 ~/.ssh/authorized_keys
 
 # Print out the private key, copy it, and paste it to your local machine's ~/.ssh directory in a new file
 cat ~/.ssh/id_rsa # copy the printed contents
-
 ```
 #### Local Machine
 
@@ -48,14 +47,14 @@ sudo nano ~/.ssh/privatekeyname
 
 # Now try SSH access from your local machine using the key
 ssh -i ~/.ssh/privatekeyname newuser@your-vms-ip
-
 ``` 
 
 ---
 
-### 2. Create a Dockerfile and Build a Docker Image for Jenkins
+## 2. Create a Dockerfile and Build a Docker Image for Jenkins
 
-#### Steps:
+### Steps:
+
 - Make a new folder `jenkins` in your user's home directory
 - Write a `Dockerfile` to install Jenkins.
 - Build the Docker image.
@@ -100,7 +99,7 @@ USER jenkins
 
 sudo docker build -t newuser-jenkins . # Don't forget the dot 
 ```
-#### Commands:
+### Commands:
 
 ```bash
 # Run the docker image from your Dockerfile
@@ -116,7 +115,7 @@ docker run -d --name newuser-jenkins -p 5003:8080 -p 5007:50000 -v newuser-jenki
 sudo docker ps
 ```
 
-##### Troubleshooting
+### Troubleshooting
 
 ```bash
 # To see all stopped and running containers do:
@@ -132,14 +131,15 @@ sudo docker rmi image_id # previous command will show image IDs
 ```
 
 ---
-### 4. Create a New Git Repository and Push Code
+## 4. Create a New Git Repository and Push Code
 
-#### Steps:
+### Steps:
+
 - Create a new Git repository on your Github account.
 - Pull the code from sir's Github Repo from this [link](https://github.com/Khhafeez47/nodeapp-iba)
-- Make sure you have set up [[#Setting up SSH authentication on Github|SSH authentication on your Github]] before this.
+- Make sure you have set up (SSH authentication)[#setting-up-ssh-authentication-on-github] on your Github before this.
 
-#### Commands:
+### Commands:
 
 ```bash
 # Clone the teacher's repository
@@ -178,26 +178,25 @@ git commit -m "Merged changes from own repository"
 git push -u origin main --force
 
 # --force will overwrite the remote branch if there are merge conflicts, it shouldn't be a problem if your repo had nothing important.
-
 ```
 
 ---
 
-### 5. Create a New Docker Hub Repository
+## 5. Create a New Docker Hub Repository
 
-#### Steps:
+### Steps:
+
 - Log in to Docker Hub and create a new repository named `yourname-nodeapp` 
 
 ---
-### 6. Create a Freestyle Project for Nodeapp in Jenkins
+## 6. Create a Freestyle Project for Nodeapp in Jenkins
 
-#### Steps:
+### Steps:
 
 - Access the Jenkins web interface and set up and build the project.
-	- Your Jenkins server will be running on `http://your-vm-ip:5003` if you followed the above code
-- You can make the Github repo and push the the node app's code to it before or during the Jenkins setup. See [[#5. Create a New Git Repository and Push Code|Step 5]]
+- Your Jenkins server will be running on `http://your-vm-ip:5003` if you followed the above code
  
-#### Instructions:
+### Instructions:
 
 1. Open your Jenkins instance in the browser by visiting `http://your-vm-ip:8081`
 2. Get the Jenkins admin password by going it the Jenkins container's shell:
@@ -210,7 +209,7 @@ cat /pathtopassword # The path will show on the Jenkins page you're on
 3. Go to Manage Jenkins > Plugins > Available Plugins and install the **CloudBees Docker Build and Publish** plugin
 4. Create a new Freestyle project by going to New Item, name it `yahya2-nodeapp`.
 
-#### Jenkins Configuration
+### Jenkins Configuration
 
 1. Under **Source Code Management**, select `Git` and provide your repository URL.
 2. Specify your branch (change it to **main** or **master** depending on your repo)
@@ -240,12 +239,12 @@ docker run -d -p 5000:5000 --name nodeapp-yourname -v nodeapp:/app your_dockerhu
 6. Click on the build under Build History and go Console Output to see if it was successful
 
 Check if the node app is live on `your-vm-ip:5006`
-### **7. Create a Subdomain for your App**
+## **7. Create a Subdomain for your App**
 
-#### Steps:
+### Steps:
 - Create a subdomain `newuser-nodeapp.yourdomain.com` by adding a record. 
 
-#### Instructions:
+### Instructions:
 - Log in to your domain registrar's control panel.
 - Go to the DNS settings for your domain.
 - Add an A record pointing `newuser-nodeapp` to your VM's public IP.
@@ -255,12 +254,12 @@ Check if your subdomain is live on DNS servers by visiting [whatsmydns.com](http
 
 ---
 
-### **8. Create Nginx Configuration for Jenkins and Nodeapp**
+## **8. Create Nginx Configuration for Jenkins and Nodeapp**
 
-#### Steps:
+### Steps:
 - Set up reverse proxy configuration for Jenkins and your nodeapp in Nginx.
 
-#### Commands:
+### Commands:
 
 ```bash
 # Install nginx if you haven't already
@@ -270,7 +269,6 @@ sudo apt install nginx
 # Start and enable nginx
 sudo systemctl start nginx
 sudo systemctl enable nginx
-
 ```
 
 ```bash
@@ -283,7 +281,7 @@ cd /etc/nginx/sites-available
 nano newuser-nodeapp
 ```
 
-#### Nginx config file
+### Nginx config file
 
 ```nginx
 server {
@@ -310,7 +308,6 @@ sudo nginx -t
 
 # If it passes, restart nginx
 sudo systemctl restart nginx
-
 ```
 
 Your node app can now be reached by visiting your subdomain `newuser-nodeapp.yourdomain.com`
@@ -333,10 +330,9 @@ sudo systemctl restart nginx
 Your Jenkins app should now be live as well.
 
 ---
-
 ## Miscellaneous Help
 
-#### Setting up SSH authentication on Github
+### Setting up SSH authentication on Github
 
 1. Go to your Github account [settings](https://github.com/settings/profile)
 2. Go to **SSH and GPG keys** and add new SSH key.
@@ -351,9 +347,9 @@ cat ~/.ssh/id_rsa.pub
 
 ---
 
+## References:
 
-
-https://www.digitalocean.com/community/tutorials/how-to-create-a-new-sudo-enabled-user-on-ubuntu
-
-https://github.com/Khhafeez47/nodeapp-iba
+- https://www.digitalocean.com/community/tutorials/how-to-create-a-new-sudo-enabled-user-on-ubuntu
+- https://github.com/Khhafeez47/nodeapp-iba
+- 
 
