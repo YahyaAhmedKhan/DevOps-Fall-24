@@ -137,7 +137,7 @@ sudo docker rmi image_id # previous command will show image IDs
 
 - Create a new Git repository on your Github account.
 - Pull the code from sir's Github Repo from this [link](https://github.com/Khhafeez47/nodeapp-iba)
-- Make sure you have set up (SSH authentication)[#setting-up-ssh-authentication-on-github] on your Github before this.
+- Make sure you have set up [SSH authentication](#setting-up-ssh-authentication-on-github) on your Github before this.
 
 ### Commands:
 
