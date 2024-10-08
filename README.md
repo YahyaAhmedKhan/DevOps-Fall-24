@@ -304,6 +304,9 @@ server {
 The above file will redirect any requests on the default http port, i.e. 80, that have the URL address: `newuser-nodeapp.yourdomain.com` to `http://localhost:5000`, where your nodeapp is running.
 
 ```bash
+# Create a symbolic link to the sites-enabled directory
+sudo ln -s /etc/nginx/sites-available/newuser-nodeapp /etc/nginx/sites-enabled/
+
 # Check for errors in the configuration file
 sudo nginx -t
 
@@ -320,6 +323,8 @@ Repeat the same steps but for your Jenkins Server:
 
 cd /etc/nginx/sites-available
 nano newuser-jenkins
+
+sudo ln -s /etc/nginx/sites-available/newuser-jenkins /etc/nginx/sites-enabled/
 
 # Add the config info for your Jenkins server. Just hange the server name to a new subdomain for the jenkins e.g. `newuser-nodeapp.yourdomain.com` and the port in the proxy_pass parameter to the port your Jenkins in running on.
 
