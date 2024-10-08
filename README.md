@@ -1,5 +1,6 @@
 # Guide for Mids practice
 
+
 ## 1. Create a New User with SSH Key for Password-less Access
 
 ### Steps:
