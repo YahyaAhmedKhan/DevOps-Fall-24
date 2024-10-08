@@ -109,8 +109,7 @@ docker run -d --name yahya-jenkins -p 80:8080 -p 50000:50000 -v yahya-jenkins:/v
 
 #### Steps:
 - Access the Jenkins web interface and set up the project.
-- You can make the Github repo and push the the node app's code to it before or during the Jenkins setup. See [[#5. Create a New Git Repository and Push Code|Step 5]]
--
+- You can make the GitHub repo and push the node app's code to it before or during the Jenkins setup. See [Create a New Git Repository](#5-create-a-new-git-repository-and-push).
 
 
 #### Instructions:
